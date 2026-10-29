@@ -4,7 +4,7 @@ Four parts. Do them in order. Each takes about 5 to 15 minutes.
 
 ---
 
-## Part 1: Create the GitHub repository (you do this once)
+## Part 1: Create the GitHub repository (done)
 
 1. Go to https://github.com/new while signed in as **paulcolsen-max**.
 2. Repository name: **jlsboots**
@@ -78,7 +78,7 @@ Stripe emails you on every payment. The license plate is attached to each paymen
 ## What to send Claude when you have it
 
 - Phone number and email for the site
-- Street addresses of the SureStore yards in Dallas, Mesquite, and Fort Worth (and where the return box is)
+- Drop-off hours at each Sure Storage yard, and where the return box is
 - Boot numbers and prices (if different from #1 to #6 at $100 / $150)
 - The Stripe Payment Links
 - A logo, if you have one

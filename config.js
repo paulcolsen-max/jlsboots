@@ -29,24 +29,24 @@ window.JLS = {
     { number: 6, price: 150, paymentLink: "" },
   ],
 
-  // Boot drop-off locations (SureStore impound yards).
+  // Boot drop-off locations (Sure Storage impound yards).
   locations: [
     {
-      name: "SureStore — Dallas",
-      address: "[STREET ADDRESS], Dallas, TX [ZIP]",
-      hours: "Drop box available 24/7",
+      name: "Sure Storage — Dallas",
+      address: "4025 Singleton Blvd, Dallas, TX 75212",
+      hours: "[CONFIRM DROP-OFF HOURS]",
       notes: "Place the boot in the marked JLS Boots return box at the front gate.",
     },
     {
-      name: "SureStore — Mesquite",
-      address: "[STREET ADDRESS], Mesquite, TX [ZIP]",
-      hours: "Drop box available 24/7",
+      name: "Sure Storage — Mesquite",
+      address: "4433 Interstate Hwy 30, Mesquite, TX 75150",
+      hours: "[CONFIRM DROP-OFF HOURS]",
       notes: "Place the boot in the marked JLS Boots return box at the front gate.",
     },
     {
-      name: "SureStore — Fort Worth",
-      address: "[STREET ADDRESS], Fort Worth, TX [ZIP]",
-      hours: "Drop box available 24/7",
+      name: "Sure Storage — Fort Worth",
+      address: "5401 Wilbarger St, Fort Worth, TX 76119",
+      hours: "[CONFIRM DROP-OFF HOURS]",
       notes: "Place the boot in the marked JLS Boots return box at the front gate.",
     },
   ],
