@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Release a Boot | JLS Boots</title>
+<link rel="stylesheet" href="styles.css">
+<script src="config.js"></script>
+</head>
+<body data-page="release">
+<header id="site-header"></header>
+
+<main>
+  <div class="wrap" style="max-width:680px">
+    <h2>Release a boot</h2>
+    <p>Fill this out, then pay by card on the next screen. Your release code is shown as soon as payment goes through.</p>
+
+    <form id="release-form" class="card" novalidate>
+      <div class="field">
+        <label>Boot number (printed on the boot)</label>
+        <div class="boot-picker" id="boot-picker"></div>
+        <div class="hint">Your vehicle must have this boot attached. The code only works on this boot.</div>
+      </div>
+
+      <div class="field">
+        <label for="plate">License plate</label>
+        <input type="text" id="plate" required autocomplete="off" placeholder="ABC1234" style="text-transform:uppercase">
+      </div>
+
+      <div class="field">
+        <label for="vehicle">Vehicle (year, make, color)</label>
+        <input type="text" id="vehicle" placeholder="2018 Toyota Camry, silver">
+      </div>
+
+      <div class="field">
+        <label for="name">Your name</label>
+        <input type="text" id="name" required autocomplete="name">
+      </div>
+
+      <div class="field">
+        <label for="phone">Mobile phone</label>
+        <input type="tel" id="phone" required autocomplete="tel">
+      </div>
+
+      <div class="field">
+        <label for="email">Email (your receipt is sent here)</label>
+        <input type="email" id="email" required autocomplete="email">
+      </div>
+
+      <div class="price-box" id="price-box">Select your boot number</div>
+
+      <div class="field">
+        <label class="check"><input type="checkbox" id="agree" required>
+          <span>I agree to return the boot in good working condition to a JLS Boots drop-off location within <span data-fill="returnWindowHours"></span> hours of payment. I understand a <span data-fill="lateFee"></span> replacement fee will be charged to my card if the boot is not returned on time or is damaged. I have read the <a href="terms.html" target="_blank">Terms &amp; Conditions</a>.</span>
+        </label>
+      </div>
+
+      <p id="form-error" class="notice" hidden></p>
+      <button class="btn" type="submit" id="pay-btn">Continue to Payment</button>
+    </form>
+
+    <div id="not-live" class="notice info" hidden>
+      <strong>Online payment is not turned on yet.</strong> Please call <span data-fill="phone"></span> to pay for your release.
+      <p style="margin-bottom:0"><a href="#" id="preview-link">Preview the after-payment page &rarr;</a></p>
+    </div>
+  </div>
+</main>
+
+<footer id="site-footer"></footer>
+<script src="app.js"></script>
+<script>
+(function () {
+  const C = window.JLS;
+  const picker = document.getElementById("boot-picker");
+  const priceBox = document.getElementById("price-box");
+  const form = document.getElementById("release-form");
+  const err = document.getElementById("form-error");
+
+  picker.innerHTML = C.boots.map((b) => `
+    <label><input type="radio" name="boot" value="${b.number}">
+      <span class="tile"><b>Boot #${b.number}</b>${JLSUtil.money(b.price)}</span></label>`).join("");
+
+  // Pre-select a boot from the link, e.g. release.html?boot=3
+  const pre = new URLSearchParams(location.search).get("boot");
+  if (pre) { const r = picker.querySelector(`input[value="${pre}"]`); if (r) r.checked = true; }
+
+  function selected() {
+    const r = picker.querySelector("input:checked");
+    return r ? C.boots.find((b) => String(b.number) === r.value) : null;
+  }
+  function updatePrice() {
+    const b = selected();
+    priceBox.textContent = b ? `Boot #${b.number} release: ${JLSUtil.money(b.price)}` : "Select your boot number";
+  }
+  picker.addEventListener("change", updatePrice);
+  updatePrice();
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    const b = selected();
+    const val = (id) => document.getElementById(id).value.trim();
+    const problems = [];
+    if (!b) problems.push("choose your boot number");
+    if (!val("plate")) problems.push("enter your license plate");
+    if (!val("name")) problems.push("enter your name");
+    if (!val("phone")) problems.push("enter your phone number");
+    if (!/^\S+@\S+\.\S+$/.test(val("email"))) problems.push("enter a valid email");
+    if (!document.getElementById("agree").checked) problems.push("agree to the return terms");
+    if (problems.length) {
+      err.textContent = "Please " + problems.join(", ") + ".";
+      err.hidden = false;
+      return;
+    }
+    err.hidden = true;
+
+    const plate = val("plate").toUpperCase().replace(/[^A-Z0-9]/g, "");
+    try {
+      localStorage.setItem("jls-release", JSON.stringify({
+        boot: b.number, plate, vehicle: val("vehicle"), name: val("name"),
+        phone: val("phone"), email: val("email"), started: Date.now(),
+      }));
+    } catch (_) {}
+
+    if (!b.paymentLink) {
+      form.hidden = true;
+      document.getElementById("not-live").hidden = false;
+      document.getElementById("preview-link").href = "success.html?boot=" + b.number;
+      return;
+    }
+    // Stripe Payment Link: pass the plate and email so they show on the payment record.
+    const url = new URL(b.paymentLink);
+    url.searchParams.set("client_reference_id", `boot${b.number}-${plate}`.slice(0, 200));
+    url.searchParams.set("prefilled_email", val("email"));
+    location.href = url.toString();
+  });
+})();
+</script>
+</body>
+</html>

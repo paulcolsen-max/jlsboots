@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>JLS Boots | Boot Release</title>
+<meta name="description" content="Pay for your vehicle boot release online, get your release code, and return the boot to a drop-off location in Dallas, Mesquite, or Fort Worth.">
+<link rel="stylesheet" href="styles.css">
+<script src="config.js"></script>
+</head>
+<body data-page="home">
+<header id="site-header"></header>
+
+<section class="hero">
+  <div class="wrap">
+    <h1>Your vehicle has been booted.</h1>
+    <p>Pay online in a few minutes, get your release code, take the boot off yourself, and drop it at one of our return locations. No waiting for a driver.</p>
+    <a class="btn" href="release.html">Release My Boot</a>
+  </div>
+</section>
+
+<main>
+  <div class="wrap">
+    <h2>How it works</h2>
+    <div class="grid">
+      <div class="card">
+        <div class="step-num">1</div>
+        <h3>Find your boot number</h3>
+        <p>The number is printed on the front of the boot (for example, Boot #3). You will need it to pay.</p>
+      </div>
+      <div class="card">
+        <div class="step-num">2</div>
+        <h3>Pay for the release</h3>
+        <p>Choose your boot number, enter your vehicle details, and pay by card. You will get your release code right after payment.</p>
+      </div>
+      <div class="card">
+        <div class="step-num">3</div>
+        <h3>Remove the boot</h3>
+        <p>Enter the code into the lock on the boot, starting with the wheel closest to the arrow. Remove the boot from the tire. Never drive with the boot attached.</p>
+      </div>
+      <div class="card">
+        <div class="step-num">4</div>
+        <h3>Return the boot</h3>
+        <p>Drop the boot in the return box at any of our three <a href="locations.html">SureStore drop-off locations</a> within <span data-fill="returnWindowHours"></span> hours.</p>
+      </div>
+    </div>
+
+    <div class="notice">
+      <strong>Important:</strong> Boots not returned within <span data-fill="returnWindowHours"></span> hours of payment, or returned damaged, will be charged a one-time <span data-fill="lateFee"></span> replacement fee to the card used for payment. Vehicles that remain booted may be towed and impounded at the owner's expense.
+    </div>
+
+    <h2>Drop-off locations</h2>
+    <div class="grid" id="locations"></div>
+
+    <p style="margin-top:32px"><a class="btn" href="release.html">Release My Boot</a></p>
+  </div>
+</main>
+
+<footer id="site-footer"></footer>
+<script src="app.js"></script>
+<script>renderLocations(document.getElementById("locations"));</script>
+</body>
+</html>

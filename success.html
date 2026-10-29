@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Return Your Boot | JLS Boots</title>
+<link rel="stylesheet" href="styles.css">
+<script src="config.js"></script>
+</head>
+<body data-page="success">
+<header id="site-header"></header>
+
+<main>
+  <div class="wrap" style="max-width:760px">
+    <div class="notice ok" style="margin-top:0">
+      <strong>Payment received<span id="boot-label"></span>. Thank you.</strong><br>
+      Your release code was shown on the payment confirmation screen. If you lost it, call <span data-fill="phone"></span>.
+    </div>
+
+    <div class="card">
+      <h2>Return the boot by</h2>
+      <div class="countdown" id="deadline"></div>
+      <div class="hint" id="remaining"></div>
+    </div>
+
+    <h2 style="margin-top:32px">Step 1: Remove the boot</h2>
+    <ol>
+      <li>Enter your 3-digit release code into the lock, starting with the wheel closest to the arrow and going top to bottom.</li>
+      <li>Pull the lock open and slide the boot off the tire.</li>
+      <li>Check the boot for loose parts and keep everything together.</li>
+      <li><strong>Do not drive with the boot on.</strong> It will damage your vehicle and the boot.</li>
+    </ol>
+
+    <h2 style="margin-top:32px">Step 2: Drop it off</h2>
+    <p>Take the boot to any one of these locations and place it in the JLS Boots return box.</p>
+    <div class="grid" id="locations"></div>
+
+    <div class="notice">
+      If the boot is not returned within <span data-fill="returnWindowHours"></span> hours, or is returned damaged, a one-time <span data-fill="lateFee"></span> replacement fee will be charged to the card you paid with.
+    </div>
+
+    <p>Keep this page open or bookmark it so you have the drop-off addresses handy.</p>
+  </div>
+</main>
+
+<footer id="site-footer"></footer>
+<script src="app.js"></script>
+<script>
+(function () {
+  const C = window.JLS;
+  renderLocations(document.getElementById("locations"));
+
+  const boot = new URLSearchParams(location.search).get("boot");
+  if (boot) document.getElementById("boot-label").textContent = " for Boot #" + boot;
+
+  // The deadline starts the first time this page is opened after paying.
+  let paidAt = Date.now();
+  try {
+    const key = "jls-paid-" + (boot || "x");
+    const saved = Number(localStorage.getItem(key));
+    if (saved && Date.now() - saved < C.returnWindowHours * 3600e3 * 2) paidAt = saved;
+    else localStorage.setItem(key, String(paidAt));
+  } catch (_) {}
+  const due = new Date(paidAt + C.returnWindowHours * 3600e3);
+
+  document.getElementById("deadline").textContent = due.toLocaleString([], {
+    weekday: "long", month: "short", day: "numeric", hour: "numeric", minute: "2-digit",
+  });
+  function tick() {
+    const ms = due - Date.now();
+    const el = document.getElementById("remaining");
+    if (ms <= 0) { el.textContent = "The return window has passed. Please return the boot now and call us."; return; }
+    const h = Math.floor(ms / 3600e3), m = Math.floor((ms % 3600e3) / 60e3);
+    el.textContent = `${h} hours ${m} minutes left`;
+  }
+  tick();
+  setInterval(tick, 30e3);
+})();
+</script>
+</body>
+</html>
