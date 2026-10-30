@@ -34,19 +34,19 @@ window.JLS = {
     {
       name: "Sure Storage — Dallas",
       address: "4025 Singleton Blvd, Dallas, TX 75212",
-      hours: "[CONFIRM DROP-OFF HOURS]",
+      hours: "Open 24 hours a day, 7 days a week",
       notes: "Place the boot in the marked JLS Boots return box at the front gate.",
     },
     {
       name: "Sure Storage — Mesquite",
       address: "4433 Interstate Hwy 30, Mesquite, TX 75150",
-      hours: "[CONFIRM DROP-OFF HOURS]",
+      hours: "Open 24 hours a day, 7 days a week",
       notes: "Place the boot in the marked JLS Boots return box at the front gate.",
     },
     {
       name: "Sure Storage — Fort Worth",
       address: "5401 Wilbarger St, Fort Worth, TX 76119",
-      hours: "[CONFIRM DROP-OFF HOURS]",
+      hours: "Open 24 hours a day, 7 days a week",
       notes: "Place the boot in the marked JLS Boots return box at the front gate.",
     },
   ],

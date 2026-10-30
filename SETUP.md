@@ -78,7 +78,7 @@ Stripe emails you on every payment. The license plate is attached to each paymen
 ## What to send Claude when you have it
 
 - Phone number and email for the site
-- Drop-off hours at each Sure Storage yard, and where the return box is
+- Where the return box is at each Sure Storage yard (hours are 24/7)
 - Boot numbers and prices (if different from #1 to #6 at $100 / $150)
 - The Stripe Payment Links
 - A logo, if you have one
