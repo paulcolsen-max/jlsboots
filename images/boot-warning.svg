@@ -11,7 +11,7 @@
       <stop offset="1" stop-color="#e6a800"/>
     </linearGradient>
     <pattern id="stripes" width="40" height="40" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
-      <rect width="20" height="40" fill="#f5b400"/>
+      <rect width="20" height="40" fill="#2fd3d8"/>
       <rect x="20" width="20" height="40" fill="#16181d"/>
     </pattern>
   </defs>
@@ -29,7 +29,7 @@
   <text x="170" y="110" font-family="Arial Black, Arial, Helvetica, sans-serif" font-weight="900" font-size="60" fill="#e5322d">WARNING</text>
   <text x="60" y="200" font-family="Arial Black, Arial, Helvetica, sans-serif" font-weight="900" font-size="46" fill="#fff">DO NOT DRIVE OR</text>
   <text x="60" y="255" font-family="Arial Black, Arial, Helvetica, sans-serif" font-weight="900" font-size="46" fill="#fff">TAMPER WITH THE BOOT</text>
-  <rect x="60" y="280" width="560" height="5" fill="#f5b400"/>
+  <rect x="60" y="280" width="560" height="5" fill="#ec1c8c"/>
 
   <!-- Rule 1: no driving -->
   <g transform="translate(60 315)">
@@ -74,10 +74,10 @@
 
   <!-- Rule 4: return -->
   <g transform="translate(60 690)">
-    <circle cx="40" cy="30" r="30" fill="#f5b400"/>
+    <circle cx="40" cy="30" r="30" fill="#2fd3d8"/>
     <circle cx="40" cy="30" r="20" fill="none" stroke="#16181d" stroke-width="5"/>
     <path d="M40 18 V30 L49 36" stroke="#16181d" stroke-width="5" fill="none" stroke-linecap="round"/>
-    <text x="100" y="40" font-family="Arial, Helvetica, sans-serif" font-weight="700" font-size="26" fill="#f5b400">Return the boot within 24 hours of release.</text>
+    <text x="100" y="40" font-family="Arial, Helvetica, sans-serif" font-weight="700" font-size="26" fill="#2fd3d8">Return the boot within 24 hours of release.</text>
   </g>
 
   <!-- Wheel with boot illustration -->
@@ -110,6 +110,6 @@
     <line x1="-152" y1="-152" x2="152" y2="152" stroke="#e5322d" stroke-width="22" opacity=".92"/>
   </g>
 
-  <text x="940" y="680" text-anchor="middle" font-family="Arial Black, Arial, Helvetica, sans-serif" font-weight="900" font-size="34" fill="#fff" letter-spacing="6">JLS <tspan fill="#f5b400">BOOTS</tspan></text>
+  <text x="940" y="680" text-anchor="middle" font-family="Arial Black, Arial, Helvetica, sans-serif" font-weight="900" font-size="34" font-style="italic" fill="#fff" letter-spacing="6"><tspan fill="#ec1c8c">JLS</tspan> <tspan fill="#2fd3d8">BOOTS</tspan></text>
   <text x="940" y="712" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="18" fill="#c9ccd3" letter-spacing="2">PAY ONLINE AT JLSBOOTS.COM</text>
 </svg>
